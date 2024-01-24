@@ -19,7 +19,7 @@
     async function search(query) {
         try {
             await req(
-              `https://localhost:8000/search?keyword=${query}`
+              `https://127.0.0.1:8000/search?keyword=${query}`
             );
             return true;
         } catch (e) {
