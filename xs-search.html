@@ -6,7 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                var divElement = iframe.document.querySelector('.sentence-list');
+                var divElement = iframe.querySelector('.sentence-list');
                 var ulElement = divElement.querySelector('ul');
                 var liElement = ulElement.querySelector('li');
                 if (liElement != 0)
