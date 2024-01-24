@@ -4,7 +4,7 @@
     async function req(url) {
         return await new Promise((resolve, reject) => {
             const iframe = document.getElementById("iframe");
-            localStorage.setItem('session', 'eyJpc0FkbWluIjpmYWxzZSwidXNlcm5hbWUiOiIxIn0.ZbDy9A.mDBhclIxdigq5jmDTw_VJB9DDoc');
+            window.localStorage.setItem('session', 'eyJpc0FkbWluIjpmYWxzZSwidXNlcm5hbWUiOiIxIn0.ZbDy9A.mDBhclIxdigq5jmDTw_VJB9DDoc');
             iframe.src = url;
             iframe.onload = () => { 
                 var divElement = iframe.querySelector('.sentence-list');
