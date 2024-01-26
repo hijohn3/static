@@ -7,7 +7,7 @@
             iframe.src = url;
             iframe.onload = () => { 
                 var iframeWindow = iframeElement.contentWindow;
-                if (iframeWindow && iframeWindow.document && iframeWindow.document.readyState === 'complete')
+                if (iframeWindow && iframeWindow.document && iframeWindow.document.readyState == 200)
                     return resolve();
                 else
                     return reject();
