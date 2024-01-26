@@ -6,7 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                if (iframe.contentDocument.querySelector('.sentence-list') != 0)
+                if (iframe.querySelector('.sentence-list') != 0)
                     return resolve();
                 else
                     return reject();
