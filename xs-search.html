@@ -6,8 +6,8 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                var iframeDocument = iframeElement.contentDocument || iframeElement.contentWindow.document;
-                if (iframeDocument.querySelector('.sentence-list'))
+                var iframeWindow = iframeElement.contentWindow;
+                if (iframeWindow && iframeWindow.document && iframeWindow.document.readyState === 'complete')
                     return resolve();
                 else
                     return reject();
