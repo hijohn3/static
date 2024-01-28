@@ -6,7 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                if (true)
+                if (iframe.contentWindow)
                     return resolve();
                 else
                     return reject();
