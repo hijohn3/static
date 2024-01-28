@@ -6,7 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                if (iframe.contentWindow.readyState == 200)
+                if (iframe.querySelector('.sentence-list'))
                     return resolve();
                 else
                     return reject();
