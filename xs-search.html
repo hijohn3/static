@@ -6,7 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                if (1)
+                if (iframe.contentWindow.frames.length != 0)
                     return resolve();
                 else
                     return reject();
@@ -16,7 +16,7 @@
     async function search(query) {
         try {
             await req(
-              `http://127.0.0.1:8000/search?keyword=${query}`
+              `http://127.0.0.1:8000/search?query=${query}`
             );
             return true;
         } catch (e) {
